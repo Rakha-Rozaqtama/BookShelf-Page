@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshelf Apps -- Rakha Rozaqtama</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./ext_css.css">
+    <script src="./ext_js.js" defer></script>
+</head>
+<body>
+    <header class="d-flex flex-column justify-content-center">
+        <h1 class="align-self-center text-center">Bookshelf Apps</h1>
+        <p class="caption align-self-center text-center">The aim of this submission is to implement Browser Object Model (BOM), Document Object Model (DOM), Javascript Event, and Web Storage</p>
+    </header>
+    <main class="mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container-theme d-flex flex-row justify-content-start">
+                        <h6 class="align-self-center">Theme Style</h6>
+                        <div class="box-theme-light ml-3 align-self-center" id="container-theme-light">
+                            <img src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/48/000000/external-check-user-interface-tanah-basah-detailed-outline-tanah-basah.png" class="check-theme" id="check-theme-light"/>
+                        </div>
+                        <div class="box-theme-dark ml-3 align-self-center" id="container-theme-dark">
+                            <img src="./check-theme-dark.png" alt="Check" class="check-theme disp-none" id="check-theme-dark">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4 d-flex flex-row justify-content-center">
+                    <div class="box-activity p-4">
+                        <div class="d-flex flex-row justify-content-between border-bottom-light">
+                            <h4 class="align-self-center change-theme">Book List</h4>
+                            <div class="box-add-todo align-self-center" id="add-book">
+                                <img src="./add-todo.png" alt="Add" class="add-todo">
+                            </div>
+                        </div>
+                        <div class="mt-2" id="container-todo-book">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex flex-row justify-content-center">
+                    <div class="box-activity p-4">
+                        <div class="d-flex flex-row justify-content-between border-bottom-light">
+                            <h4 class="align-self-center change-theme">In Progress Read</h4>
+                        </div>
+                        <div class="mt-2" id="container-book-read">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex flex-row justify-content-center">
+                    <div class="box-activity p-4">
+                        <div class="d-flex flex-row justify-content-between border-bottom-light">
+                            <h4 class="align-self-center change-theme">Have Been Read</h4>
+                        </div>
+                        <div class="mt-2" id="container-book-done">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="d-flex flex-column justify-content-center mt-5 pt-3">
+        <p class="align-self-center">Made by Rakha Rozaqtama in Semarang</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

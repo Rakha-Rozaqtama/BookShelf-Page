@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #b6f0db;
+    color: black;
+}
+
+header{
+    padding: 20px;
+}
+main{
+    padding: 20px;
+}
+footer{
+    background-color: #0c1670;
+    color: white;
+    padding: 0px !important;
+}
+
+h1{
+    font-weight: 600;
+}
+
+.box-shadow-card{
+    box-shadow: 7px 8px #888888;
+}   
+
+p.text-book-title{
+    font-size: 70%;
+    font-weight: 600;
+}
+.text-book-title-read{
+    font-size: 120%;
+    font-weight: 600;
+}
+.text-book-title-done{
+    font-size: 120%;
+    font-weight: 600;
+}
+
+p.text-special{
+    font-size: 80%;
+}
+
+.container-book-author{
+    background-color: #0c1670;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+.container-book-author-read{
+    background-color: #0c1670;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    width: max-content;
+}
+.container-book-author-done{
+    background-color: #0c1670;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.container-year-published{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+.container-year-published-read{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    width: max-content;
+}
+.container-year-published-done{
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.caption{
+    font-weight: 500;
+    font-style: italic;
+}
+
+.box-theme-light{
+    width: 30px;
+    height: 30px;
+    background-color: #b6f0db;
+    border: 2px solid black;
+    position: relative;
+    cursor: pointer;
+}
+
+.box-theme-dark{
+    width: 30px;
+    height: 30px;
+    background-color: #0c1670;
+    border: 2px solid black;
+    position: relative;
+    cursor: pointer;
+}
+
+.check-theme{
+    position: absolute;
+    float: left;
+    top: -9px;
+    left: -10px;
+}
+
+.disp-none{
+    display: none;
+}
+
+.disp-none-impt{
+    display: none !important;
+}
+
+.box-activity{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border-radius: 30px;
+    overflow-y: auto;
+}
+
+.box-add-todo{
+    width: 35px;
+    height: 35px;
+    background-color: #0c1670;
+    position: relative;
+}
+
+.add-todo{
+    position: absolute;
+    float: left;
+    top: -7px;
+    left: -6px;
+    cursor: pointer;
+}
+
+.border-bottom-light{
+    padding-bottom: 8px;
+    border-bottom: 2px solid black;
+}
+
+.list-todo-book{
+    border: 2px solid black;
+    width: 100%;
+    min-height: 75px;
+    border-radius: 10px;
+}
+
+.list-book-read{
+    border: 2px solid black;
+    width: 100%;
+    min-height: 75px;
+    border-radius: 10px;
+}
+
+.list-book-done{
+    border: 2px solid black;
+    width: 100%;
+    min-height: 75px;
+    border-radius: 10px;
+}
+
+.inputTodoBook{
+    width: 100%;
+}
+
+.add-book-title{
+    background-color: #0c1670;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 5px 6px #888888;
+}
+
+.add-book-title:hover{
+    margin-top: 2px;
+    box-shadow: none;
+}
+
+.check-add-todo{
+    position: absolute;
+    float: left;
+    top: -10px;
+    left: -12px;
+    min-width: 60px;
+    max-width: 70px;
+}
+
+.edit-book-title{
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+}
+
+.edit-book{
+    position: absolute;
+    float: left;
+    top: 2px;
+    left: 3px;
+    width: 34px;
+}
+
+.read-book{
+    background-color: #0c1670;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+}
+
+.read-book-img{
+    position: absolute;
+    float: left;
+    top: 3px;
+    left: 3px;
+    width: 34px;
+}
+
+.remove-book-title{
+    background-color: red;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 5px 6px #888888;
+}
+
+.btn-uncheck{
+    background-color: red;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+    position: relative;
+}
+
+.remove-book-title:hover{
+    margin-top: 2px;
+    box-shadow: none;
+}
+
+.cancel-todo{
+    width: 25px;
+    position: absolute;
+    float: left;
+    top: 4px;
+    left: 5px
+}
+
+.clr-warning{
+    color: red !important;
+}
+
+.bookTitleText{
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.btn-check-done{
+    position: relative;
+    background-color: #0c1670;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+}
+
+.check-to-done{
+    position: absolute;
+    float: left;
+    top: -10px;
+    left: -12px;
+    min-width: 60px;
+}
+
+@media screen and (max-width: 992px){
+    .box-activity{
+        margin-top: 20px !important;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .container-decoration{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        align-content: center !important;
+    }
+    .bookAuthorText{
+        align-self: flex-start !important;
+    }
+    .yearPublishedText{
+        align-self: flex-start !important;
+        margin: 0px !important;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .container-edit-read{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-end !important;
+    }
+    .container-edit-read .read-book{
+        margin-top: 10px !important;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1110px){
+    .book-detail-read{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    .book-detail-read .book-author-read{
+        align-self: flex-start !important;
+    }
+    .book-detail-read .year-published-read{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }
+
+    .container-decoration{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    .container-decoration .bookAuthorText{
+        align-self: flex-start !important;
+    }
+    .container-decoration .yearPublishedText{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .book-detail-read{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    .book-detail-read .book-author-read{
+        align-self: flex-start !important;
+    }
+    .book-detail-read .year-published-read{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }   
+}
