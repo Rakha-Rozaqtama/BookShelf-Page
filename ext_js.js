@@ -3,6 +3,16 @@ const bookListKey = "BOOK-LIST-KEY";
 const bookInProgressKey = "BOOK-IN-PROGRESS-KEY";
 const bookCompleted = "BOOK-COMPLETED";
 
+// Get Parent Elements
+const containerThemeLight = document.getElementById('container-theme-light');
+const containerThemeDark = document.getElementById('container-theme-dark');
+const checkThemeLight = document.getElementById('check-theme-light');
+const checkThemeDark = document.getElementById('check-theme-dark');
+const btnAddActivity = document.getElementById('add-book');
+const containerTodoBook = document.getElementById('container-todo-book');
+const containerBookRead = document.getElementById('container-book-read');
+const containerBookDone = document.getElementById('container-book-done');
+
 window.addEventListener('load', () => {
     if(typeof(Storage) !== undefined){
         let dataBookList = localStorage.getItem(bookListKey);
@@ -11,6 +21,19 @@ window.addEventListener('load', () => {
 
         if(!dataBookList){
             localStorage.setItem(bookListKey, "");
+        }else{
+            let arrBookList = dataBookList.split(', ');
+            for(let elm of arrBookList){
+                let jsonObj;
+                if(elm){
+                    jsonObj = JSON.parse(elm);
+                    if(jsonObj){
+                        if(jsonObj.bookList){
+                            settingUpBookList(jsonObj);
+                        }
+                    }
+                }
+            }
         }
         if(!dataBookInProgress){
             localStorage.setItem(bookInProgressKey, "");
@@ -23,16 +46,78 @@ window.addEventListener('load', () => {
     }
 });
 
+function settingUpBookList(json){
+    let classSign = json.id;
+    let elmtInput = document.createElement('div');
+    elmtInput.classList.add("d-flex");
+    elmtInput.classList.add('flex-row');
+    elmtInput.classList.add('justify-content-between');
+    elmtInput.classList.add('list-todo-book');
+    elmtInput.classList.add(classSign);
+    elmtInput.classList.add('p-2');
+    elmtInput.classList.add('mt-2');
+    elmtInput.setAttribute('id', 'child-list');
+    let inputBook = `
+        <div class="container-fluid disp-none">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="form-group mt-1 disp-none" id="inputBookTitle">
+                        <label for="exampleInputEmail1" style="color:black;">Book Title</label>
+                        <input type="text" class="disp-none form-control inputTodoBook inputBookTitle" placeholder="Book Title">
+                        <small class="form-text text-muted disp-none clr-warning inputHelp">Please fill book title before add it to book list!</small>
+                    </div>
+                    <div class="form-group mt-2 disp-none" id="inputBookAuthor">
+                        <label for="exampleInputEmail1" style="color:black;">Book's Author</label>
+                        <input type="text" class="disp-none form-control inputTodoBook inputBookAuthor" placeholder="Book's Author">
+                        <small class="form-text text-muted disp-none clr-warning inputHelp">Please fill book's author before add it to book list!</small>
+                    </div>
+                    <div class="form-group mt-2 disp-none" id="inputYearPublished">
+                        <label for="exampleInputEmail1" style="color:black;">Year Published</label>
+                        <input type="text" class="disp-none form-control inputTodoBook inputYearPublished" placeholder="Year Published">
+                        <small class="form-text text-muted disp-none clr-warning inputHelp">Please fill year published before add it to book list!</small>
+                    </div>
+                    <small class="form-text text-muted disp-none clr-warning inputHelpWarning">Please fill all forms before add it to book list!</small>
+                </div>
+                <div class="col-sm-5">
+                    <div class="d-flex flex-row justify-content-end btnFunctionality mt-1">
+                        <div class="add-book-title" onclick="accTodoBook()">
+                            <img src="./check-theme-dark.png" alt="Add" class="check-add-todo">
+                        </div>
+                        <div class="remove-book-title ml-2" id="cancel-todo-book" onclick="removeTodoBook()">
+                            <img src="./cancel-todo.png" alt="remove" class="cancel-todo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-const containerThemeLight = document.getElementById('container-theme-light');
-const containerThemeDark = document.getElementById('container-theme-dark');
-const checkThemeLight = document.getElementById('check-theme-light');
-const checkThemeDark = document.getElementById('check-theme-dark');
-const btnAddActivity = document.getElementById('add-book');
-const containerTodoBook = document.getElementById('container-todo-book');
-const containerBookRead = document.getElementById('container-book-read');
-const containerBookDone = document.getElementById('container-book-done');
+        <div class="d-flex flex-column justify-content-center container-text-result">
+            <div class="align-self-start mt-3 bookTitleText pr-2">
+                <p class="text-book-title" style="color: black">${json.title}</p>
+            </div>
+            <div class="align-self-start mt-1 d-flex flex-row justify-content-start container-decoration">
+                <div class="bookAuthorText">
+                    <p class="text-special container-book-author">${json.author}</p>
+                </div>
+                <div class="yearPublishedText ml-2">
+                    <p class="text-special container-year-published">${json.year}</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-start container-edit-read align-self-center">
+            <div class="edit-book-title" onclick="editBook()">
+                <img src="./edit-book.png" alt="Edit" class="edit-book">
+            </div>
+            <div class="read-book ml-2" onclick="readBook()">
+                <img src="./read_a_book.png" alt="Edit" class="read-book-img">
+            </div>
+        </div>
+    `;
+    elmtInput.innerHTML = inputBook;
+    containerTodoBook.appendChild(elmtInput);
+}   
 
+//DONE WORKING
 function generateClassSign(){
     let timeStamps = +new Date();
     return `container-${timeStamps}`;
@@ -82,7 +167,6 @@ function accTodoBook(){
     let containerDecoration = document.querySelector(`#child-list.${listClass} .container-decoration`);
     let bookAuthorTag = document.querySelector(`#child-list.${listClass} .container-text-result .container-decoration .bookAuthorText`);
     let yearPublishedTag = document.querySelector(`#child-list.${listClass} .container-text-result .container-decoration .yearPublishedText`);
-    // let cardContainer = document.getElementById('child-list');
     let cardContainer = document.querySelector(`#child-list.${listClass}`);
 
     let valBookTitle = inputBookTitle.value;
@@ -106,12 +190,34 @@ function accTodoBook(){
             yearPublishedTag.removeChild(yearPublishedTag.lastChild);
         }
 
-        LocalStorage
         let dataBookList = localStorage.getItem(bookListKey);
-
         if(dataBookList){
-            let arrBookList = dataBookList.split(',');
-            console.log(arrBookList);
+            let arrBookList = dataBookList.split(', ');
+            let addToLocal = true;
+            for(let elm of arrBookList){
+                let jsonObj;
+                if(elm){
+                    jsonObj = JSON.parse(elm);
+                    if(jsonObj.id === listClass){
+                        addToLocal = false;
+                    }
+                }
+            }
+
+            if(addToLocal){
+                let dataJson = {
+                    id: listClass,
+                    title: valBookTitle,
+                    author: valBookAuthor,
+                    year: valYearPublished,
+                    isComplete: false,
+                    bookList: true,
+                };
+                dataJson = JSON.stringify(dataJson);
+                dataBookList += dataJson;
+                dataBookList += ", ";
+                localStorage.setItem(bookListKey, dataBookList);
+            }
         }else{
             let dataJson = {
                 id: listClass,
@@ -123,7 +229,7 @@ function accTodoBook(){
             };
             dataJson = JSON.stringify(dataJson);
             dataBookList += dataJson;
-            dataBookList += ","
+            dataBookList += ", ";
             localStorage.setItem(bookListKey, dataBookList);
         }
 
@@ -185,10 +291,10 @@ function editBook(){
     let containerInputBookAuthor = document.querySelector(`#child-list.${listClass} #inputBookAuthor`);
     let containerInputYearPublished = document.querySelector(`#child-list.${listClass} #inputYearPublished`);
     let containerTextResult = document.querySelector(`#child-list.${listClass} .container-text-result`);
-    let valBookTitle = containerBookTitle.childNodes[0].innerText;
-    let valBookAuthor = containerBookAuthor.childNodes[0].innerText;
-    let valYearPublished = containerYearPublished.childNodes[0].innerText;
     let cardContainer = document.querySelector(`#child-list.${listClass}`);
+    let valBookTitle = (containerBookTitle.childNodes[0].innerText == undefined) ? containerBookTitle.childNodes[1].innerText  : containerBookTitle.childNodes[0].innerText;
+    let valBookAuthor = (containerBookAuthor.childNodes[0].innerText == undefined) ? containerBookAuthor.childNodes[1].innerText : containerBookAuthor.childNodes[0].innerText;
+    let valYearPublished = (containerYearPublished.childNodes[0].innerText == undefined) ? containerBookAuthor.childNodes[1].innerText : containerBookAuthor.childNodes[0].innerText;
     
     containerTextResult.classList.add('disp-none-impt');
     containerEditRead.classList.add('disp-none-impt');
