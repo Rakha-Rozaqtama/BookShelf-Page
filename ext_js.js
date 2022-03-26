@@ -140,6 +140,24 @@ function searchChildIndex(parent, className){
 function removeTodoBook(){
     let evt = window.event.target;
     let listClass = evt.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.classList;
+
+    let dataBookList = localStorage.getItem(bookListKey);
+    if(dataBookList){
+        let arrBookList = dataBookList.split(', ');
+        let newItems = "";
+        for(let elm of arrBookList){
+            let jsonObj;
+            if(elm){
+                jsonObj = JSON.parse(elm);
+                if(jsonObj.id !== listClass[4]){
+                    newItems += JSON.stringify(jsonObj);
+                }
+            }
+        }
+        localStorage.removeItem(bookListKey);
+        localStorage.setItem(bookListKey, newItems);
+    }
+
     let idxContainer = searchChildIndex(evt.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes, listClass[4]);
     containerTodoBook.removeChild(containerTodoBook.childNodes[idxContainer]);
 }
@@ -291,11 +309,25 @@ function editBook(){
     let containerInputBookAuthor = document.querySelector(`#child-list.${listClass} #inputBookAuthor`);
     let containerInputYearPublished = document.querySelector(`#child-list.${listClass} #inputYearPublished`);
     let containerTextResult = document.querySelector(`#child-list.${listClass} .container-text-result`);
+    let bookAuthorTag = document.querySelector(`#child-list.${listClass} .container-text-result .container-decoration .bookAuthorText`);
+    let yearPublishedTag = document.querySelector(`#child-list.${listClass} .container-text-result .container-decoration .yearPublishedText`);
     let cardContainer = document.querySelector(`#child-list.${listClass}`);
     let valBookTitle = (containerBookTitle.childNodes[0].innerText == undefined) ? containerBookTitle.childNodes[1].innerText  : containerBookTitle.childNodes[0].innerText;
     let valBookAuthor = (containerBookAuthor.childNodes[0].innerText == undefined) ? containerBookAuthor.childNodes[1].innerText : containerBookAuthor.childNodes[0].innerText;
-    let valYearPublished = (containerYearPublished.childNodes[0].innerText == undefined) ? containerBookAuthor.childNodes[1].innerText : containerBookAuthor.childNodes[0].innerText;
+    let valYearPublished = (containerYearPublished.childNodes[0].innerText == undefined) ? containerYearPublished.childNodes[1].innerText : containerYearPublished.childNodes[0].innerText;
     
+    if(containerBookTitle.hasChildNodes()){
+        containerBookTitle.removeChild(containerBookTitle.lastChild);
+    }
+
+    if(bookAuthorTag.hasChildNodes()){
+        bookAuthorTag.removeChild(bookAuthorTag.lastChild);
+    }
+
+    if(yearPublishedTag.hasChildNodes()){
+        yearPublishedTag.removeChild(yearPublishedTag.lastChild);
+    }
+
     containerTextResult.classList.add('disp-none-impt');
     containerEditRead.classList.add('disp-none-impt');
     mainContainer.classList.remove('disp-none');
