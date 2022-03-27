@@ -7,8 +7,8 @@
     <title>Bookshelf Apps -- Rakha Rozaqtama</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./ext_css.css">
-    <script src="./ext_js.js" defer></script>
+    <link rel="stylesheet" href="./css/ext_css.css">
+    <script src="./js/ext_js.js" defer></script>
 </head>
 <body>
     <header class="d-flex flex-column justify-content-center">
@@ -25,18 +25,31 @@
                             <img src="https://img.icons8.com/external-tanah-basah-detailed-outline-tanah-basah/48/000000/external-check-user-interface-tanah-basah-detailed-outline-tanah-basah.png" class="check-theme" id="check-theme-light"/>
                         </div>
                         <div class="box-theme-dark ml-3 align-self-center" id="container-theme-dark">
-                            <img src="./check-theme-dark.png" alt="Check" class="check-theme disp-none" id="check-theme-dark">
+                            <img src="./assets/check-theme-dark.png" alt="Check" class="check-theme disp-none" id="check-theme-dark">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5">
+            <!-- <div class="row mt-5">
+                <div class="col-12">
+                    <div class="search-tab d-flex flex-row justify-content-start pr-3" id="search">
+                        <img src="https://img.icons8.com/material-outlined/24/000000/search--v1.png" class="search-icon align-self-center"/>
+                        <p class="font-semibold ml-2 align-self-center pt-3 change-theme" id="search-text">Search</p>
+                        <form action="#">
+                            <div class="form-group">
+                                <input type="text" class="form-control mt-3 ml-2 disp-none" id="search-data" placeholder="Search.....">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row mt-3">
                 <div class="col-lg-4 d-flex flex-row justify-content-center">
                     <div class="box-activity p-4">
                         <div class="d-flex flex-row justify-content-between border-bottom-light">
                             <h4 class="align-self-center change-theme">Book List</h4>
                             <div class="box-add-todo align-self-center" id="add-book">
-                                <img src="./add-todo.png" alt="Add" class="add-todo">
+                                <img src="./assets/add-todo.png" alt="Add" class="add-todo">
                             </div>
                         </div>
                         <div class="mt-2" id="container-todo-book">
@@ -65,7 +78,7 @@
         </div>
     </main>
     <footer class="d-flex flex-column justify-content-center mt-5 pt-3">
-        <p class="align-self-center">Made by Rakha Rozaqtama in Semarang</p>
+        <p class="align-self-center">Made by Rakha Rozaqtama</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
