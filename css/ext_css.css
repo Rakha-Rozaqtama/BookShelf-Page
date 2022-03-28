@@ -238,6 +238,17 @@ p.text-special{
     position: relative;
 }
 
+.move-to-inprogress{
+    background-color: #0c1670;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 40px;
+    max-height: 40px;
+    cursor: pointer;
+    position: relative;
+}
+
+
 .read-book-img{
     position: absolute;
     float: left;
@@ -277,6 +288,13 @@ p.text-special{
     position: absolute;
     float: left;
     top: 4px;
+    left: 5px
+}
+.move-back{
+    width: 25px;
+    position: absolute;
+    float: left;
+    top: 5px;
     left: 5px
 }
 
@@ -356,9 +374,11 @@ p.text-special{
         justify-content: flex-start !important;
         align-items: center !important;
     }
+
     .book-detail-read .book-author-read{
         align-self: flex-start !important;
     }
+
     .book-detail-read .year-published-read{
         align-self: flex-start !important;
         margin-left: 0px !important;
@@ -389,6 +409,43 @@ p.text-special{
         margin-left: 0px !important;
         margin-top: 10px;
     }
+
+    .container-fluid .row .col-5#btn-decoration-done{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+    }
+
+    .btn-uncheck{
+        margin-top: 10px;
+    }
+
+    .col-7 .container-detail-book-done .book-detail-done{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+    }
+
+    #btn-decoration-done .move-to-inprogress{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }
+
+    #btn-decoration-done .btn-uncheck{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }
+
+    .book-author-done{
+        align-self: flex-start !important;
+    }
+
+    .year-published-done{
+        align-self: flex-start !important;
+        margin-left: 0px !important;
+    }
 }
 
 @media screen and (max-width: 500px){
@@ -411,22 +468,28 @@ p.text-special{
         justify-content: center !important;
         align-items: flex-end !important;
     }
-
     #btn-cancel-progress{
         margin-left: 0px !important;
         margin-top: 10px;
     }
-    .book-detail-done{
+    .col-7 .container-detail-book-done .book-detail-done{
         display: flex !important;
         flex-direction: column !important;
         justify-content: flex-start !important;
         align-items: flex-start !important;
     }
-
+    .container-fluid .row .col-5#btn-decoration-done{
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+    }
+    .btn-uncheck{
+        margin-top: 10px;;
+    }
     .book-author-done{
         align-self: flex-start !important;
     }
-
     .year-published-done{
         align-self: flex-start !important;
         margin-left: 0px !important;

@@ -11,9 +11,6 @@ const btnAddActivity = document.getElementById('add-book');
 const containerTodoBook = document.getElementById('container-todo-book');
 const containerBookRead = document.getElementById('container-book-read');
 const containerBookDone = document.getElementById('container-book-done');
-const containerSearch = document.getElementById('search');
-const searchTextBefore = document.getElementById('search-text');
-const searchInput = document.getElementById('search-data');
 //==================================================================================
 
 
@@ -119,7 +116,7 @@ function settingUpBookList(json){
                 <div class="col-sm-5">
                     <div class="d-flex flex-row justify-content-end btnFunctionality mt-1">
                         <div class="add-book-title" onclick="accTodoBook()">
-                            <img src="./asset/check-theme-dark.png" alt="Add" class="check-add-todo">
+                            <img src="./assets/check-theme-dark.png" alt="Add" class="check-add-todo">
                         </div>
                         <div class="remove-book-title ml-2" id="cancel-todo-book" onclick="removeTodoBook()">
                             <img src="./assets/cancel-todo.png" alt="remove" class="cancel-todo">
@@ -187,12 +184,12 @@ function settingUpBookRead(json){
                         </div>
                     </div>
                 </div>
-                <div class="col-5 d-flex flex-row justify-content-end">
-                    <div class="btn-check-done align-self-center" onclick="bookDoneRead()">
+                <div class="col-5" id="btn-book-progress">
+                    <div class="btn-check-done align-self-center" onclick="bookDoneRead()" id="btn-check-progress">
                         <img src="./assets/check-theme-dark.png" alt="Add" class="check-to-done">
                     </div>
-                    <div class="btn-uncheck align-self-center ml-2" onclick="cancelProgressBook()">
-                        <img src="./assets/cancel-todo.png" alt="remove" class="cancel-todo">
+                    <div class="btn-uncheck align-self-center ml-2" onclick="cancelProgressBook()" id="btn-cancel-progress">
+                        <img src="./assets/trash_icon.png" alt="remove" class="cancel-todo">
                     </div>
                 </div>
             </div>
@@ -236,8 +233,11 @@ function settingUpBookDone(json){
             </div>
         </div>
         <div class="col-5 d-flex flex-row justify-content-end">
-                <div class="btn-uncheck align-self-center ml-2" onclick="cancelDone()">
-                    <img src="./assets/cancel-todo.png" alt="remove" class="cancel-todo">
+            <div class="move-to-inprogress align-self-center ml-2" onclick="cancelDone()">
+                    <img src="./assets/read_a_book.png" alt="remove" class="move-back">
+                </div>
+                <div class="btn-uncheck align-self-center ml-2" onclick="trashBookDone()">
+                    <img src="./assets/trash_icon.png" alt="remove" class="cancel-todo">
                 </div>
             </div>
         </div>
@@ -331,7 +331,7 @@ function addContainerBookInProgress(bookTitle, bookAuthor, yearPublished, contai
                         <img src="./assets/check-theme-dark.png" alt="Add" class="check-to-done">
                     </div>
                     <div class="btn-uncheck align-self-center ml-2" onclick="cancelProgressBook()" id="btn-cancel-progress">
-                        <img src="./assets/cancel-todo.png" alt="remove" class="cancel-todo">
+                        <img src="./assets/trash_icon.png" alt="remove" class="cancel-todo">
                     </div>
                 </div>
             </div>
@@ -360,23 +360,27 @@ function addContainerBookDone(bookTitle, bookAuthor, yearPublished, containerBoo
 
     let bookDoneInner = `
     <div class="container-fluid">
-    <div class="row">
-        <div class="col-7">
-            <div class="container-detail-book-done">
-                <p class="text-book-title-done text-start" style="color: black;">${valBookTitle}</p>
-                <div class="d-flex flex-row justify-content-start book-detail-done">
-                    <div class="align-self-center book-author-done">
-                        <p class="container-book-author-done">${valBookAuthor}</p>
-                    </div>
-                    <div class="align-self-center ml-2 year-published-done">
-                        <p class="container-year-published-done">${valYearPublished}</p>
+        <div class="row">
+            <div class="col-7">
+                <div class="container-detail-book-done">
+                    <p class="text-book-title-done text-start" style="color: black;">${valBookTitle}</p>
+                    <div class="d-flex flex-row justify-content-start book-detail-done">
+                        <div class="align-self-center book-author-done">
+                            <p class="container-book-author-done">${valBookAuthor}</p>
+                        </div>
+                        <div class="align-self-center ml-2 year-published-done">
+                            <p class="container-year-published-done">${valYearPublished}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-5 d-flex flex-row justify-content-end">
-                <div class="btn-uncheck align-self-center ml-2" onclick="cancelDone()">
-                    <img src="./assets/cancel-todo.png" alt="remove" class="cancel-todo">
+            <div class="col-5 d-flex flex-row justify-content-end" id="btn-decoration-done">
+                    <div class="move-to-inprogress align-self-center ml-2" onclick="cancelDone()">
+                        <img src="./assets/read_a_book.png" alt="remove" class="move-back">
+                    </div>
+                    <div class="btn-uncheck align-self-center ml-2" onclick="trashBookDone()">
+                        <img src="./assets/trash_icon.png" alt="remove" class="cancel-todo">
+                    </div>
                 </div>
             </div>
         </div>
@@ -831,13 +835,13 @@ function cancelDone(){
     let evt = window.event.target;
     let listClass = evt.parentNode.parentNode.parentNode.parentNode.parentNode.classList;
     listClass = listClass[4];
+    console.log(listClass);
     let idxToRemove = searchChildIndex(evt.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes, listClass);
     containerBookDone.removeChild(containerBookDone.childNodes[idxToRemove]);
 
     let storageBookDone = localStorage.getItem(bookCompleted);
     let arrBookDone = storageBookDone.split('=');
     let jsonObj;
-    let itemsBookProgress = "";
     let newItems = "";
     if(arrBookDone){
         for(let elm of arrBookDone){
@@ -856,6 +860,32 @@ function cancelDone(){
 
     localStorage.removeItem(bookCompleted);
     localStorage.setItem(bookCompleted, newItems);
+}
+
+function trashBookDone(){
+    let evt = window.event.target;
+    let listClass = evt.parentNode.parentNode.parentNode.parentNode.parentNode.classList;
+    listClass = listClass[4];
+    let idxToRemove = searchChildIndex(evt.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes, listClass);
+    containerBookDone.removeChild(containerBookDone.childNodes[idxToRemove]);
+
+    const storageBookDone = localStorage.getItem(bookCompleted);
+    const arrBookDone = storageBookDone.split('=');
+    let jsonObj;
+    let newItems = "";
+    if(arrBookDone){
+        for(let elm of arrBookDone){
+            if(elm){
+                jsonObj = JSON.parse(elm);
+                if(jsonObj.id !== listClass){
+                    newItems += JSON.stringify(jsonObj);
+                    newItems += "=";
+                }
+            }
+        }
+
+        localStorage.setItem(bookCompleted, newItems);
+    }
 }
 // ==============================================================================
 
@@ -957,45 +987,3 @@ btnAddActivity.addEventListener('click', () => {
     elmtInput.innerHTML = inputBook;
     containerTodoBook.appendChild(elmtInput);
 });
-
-// containerSearch.addEventListener('click', () => {
-//     searchTextBefore.classList.add('disp-none');
-//     searchInput.classList.remove('disp-none');
-// })
-
-// searchInput.addEventListener('keyup', () => {
-//     let valSearch = searchInput.value;
-//     let jsonObj;
-//     let foundBookList;
-//     let foundBookProgress;
-//     let foundBookDone;
-    
-//     const storageBookList = localStorage.getItem(bookListKey);
-//     const storageBookProgress = localStorage.getItem(bookInProgressKey);
-//     const storageBookDone = localStorage.getItem(bookCompleted);
-
-//     const arrBookList = storageBookList.split('=');
-//     for(let elm of arrBookList){
-//         if(elm){
-//             jsonObj = JSON.parse(elm);
-//             if(jsonObj.title.includes(valSearch)){
-//                 console.log("Masuk If");
-//                 settingUpBookList(jsonObj);
-//                 foundBookList = true;
-//             }else if(jsonObj.author.includes(valSearch)){
-//                 console.log("Masuk Else If");
-//                 settingUpBookList(jsonObj);
-//                 foundBookList = true;
-//             }else{
-//                 if(jsonObj.year.includes(valSearch)){
-//                     console.log("Masuk Else-If");
-//                     settingUpBookList(jsonObj);
-//                     foundBookList = true;
-//                 }else{
-//                     foundBookList = false;
-//                 }
-//             }
-//         }
-//     }
-// });
-// ==============================================================================
